@@ -1,0 +1,14 @@
+{% extends 'home/base.html' %}
+
+{% block content %}
+<ul>
+    {% for p in posts%}
+    <li>
+        <h2>{{p.news}}</h2>
+        <br /><br />
+        <h2>{{p.work_schedule}}</h2>
+    </li>
+    {% endfor %}
+</ul>
+
+{% endblock content %}
