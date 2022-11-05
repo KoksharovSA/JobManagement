@@ -23,6 +23,7 @@ from home.views import home, pageNotFound
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('home.urls')),
+    path('task/', include('work_task.urls')),
 ]
 
 if settings.DEBUG:

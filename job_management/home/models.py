@@ -1,21 +1,20 @@
 from django.db import models
+from django.urls import reverse
+
 
 class HomePage(models.Model):
-    news = models.TextField(blank=True)
-    work_schedule = models.TextField(blank=True)
-    
-class Employee(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    working_position = models.ForeignKey('Working_professions', on_delete=models.PROTECT, null=True)
-    phone = models.CharField(max_length=50, blank=True)
+    news = models.TextField(blank=True, verbose_name='Новости')
+    work_schedule = models.TextField(blank=True,
+                                     verbose_name='Расписание работы')
+    week_number = models.IntegerField(default=0, verbose_name='Номер недели')
     
     def __str__(self):
-        return self.first_name + " " + self.last_name + " " + self.working_position
+        return self.news
     
-class Working_professions(models.Model):
-    profession = models.CharField(max_length=50)
-    
-    def __str__(self):
-        return self.profession
-    
+    def get_absolute_url(self):
+        return reverse('home', kwargs={'week_number': self.week_number})
+
+    class Meta:
+        verbose_name = 'Главная страница'
+        verbose_name_plural = 'Главные страницы'
+        ordering = ['-week_number']
