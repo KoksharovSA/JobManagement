@@ -14,7 +14,7 @@ class Employee(models.Model):
                              verbose_name='Номер телефона')
     
     def __str__(self):
-        return self.full_name + " " + self.working_position
+        return self.full_name
     
     def get_absolute_url(self):
         return reverse('employee', kwargs={'pk': self.pk})
@@ -48,6 +48,7 @@ class Technological_operation(models.Model):
                                        verbose_name='Технологическая '
                                                     'операция')
     working_profession = models.ForeignKey('Working_professions',
+                                           to_field='profession',
                                          on_delete=models.PROTECT, null=True,
                                          verbose_name='Прфессия')
     

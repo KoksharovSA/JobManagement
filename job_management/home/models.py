@@ -12,9 +12,9 @@ class HomePage(models.Model):
         return self.news
     
     def get_absolute_url(self):
-        return reverse('home', kwargs={'week_number': self.week_number})
+        return reverse('post', kwargs={'number_week': self.week_number})
 
     class Meta:
-        verbose_name = 'Главная страница'
-        verbose_name_plural = 'Главные страницы'
+        verbose_name = 'Пост'
+        verbose_name_plural = 'Посты'
         ordering = ['-week_number']
